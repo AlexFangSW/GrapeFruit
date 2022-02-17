@@ -1,0 +1,134 @@
+<table valign="top">
+<tr><td valign="top"><form method="POST" action="searchact">
+<table valign="top">
+<tr><td>日期 <td><input type="date" name="time" id="time"><br>
+
+<tr><td>表單<td><input type="radio" name="table" value="賣出">賣出
+<tr><td><td><input type="radio" name="table" value="買入">買入
+<tr><td><td><input type="radio" name="table" value="大筆支出">大筆支出
+<tr><td><td><input type="radio" name="table" value="日常支出">日常支出
+<tr><td><td><input type="radio" name="table" value="全部">全部
+
+
+<tr><td>買家<td><input type="radio" name="company" value="黛莉貝爾">黛莉貝爾
+<tr><td><td><input type="radio" name="company" value="果菜">果菜
+<tr><td><td><input type="radio" name="company" value="其他">其他
+<tr><td><td><input type="radio" name="company" value="全部">全部
+
+
+
+<tr><td><input type="submit">
+</table>
+</form>
+
+{%if msg%}
+{{msg}}
+<br>
+{%endif%}
+<a href = '/'>回上一頁</a>
+<br><br>
+
+{%if buy%}
+買入共 {{money[0]}} 元<br>
+{%endif%}
+{%if sell%}
+賣出共 {{money[1]}} 元<br>
+{%endif%}
+{%if large%}
+大筆支出共 {{money[2]}} 元<br>
+{%endif%}
+{%if normal%}
+日常支出共 {{money[3]}} 元<br>
+<br>
+{%endif%}
+
+{%if buy%}
+<td valign="top">
+<h1>買入</h1>
+<table border = 1>
+<tr><td>時間<td>水果<td>斤數<td>價格<td>總價
+{% for i in buy %}
+<tr><td>{{i[0]}}<td>{{i[2]}}<td>{{i[1]}}<td>{{i[3]}}<td>{{i[1]*i[3]}}
+<td><form method='post' action='update'>
+<input type="hidden" name="time" value={{i[0]}}>
+<input type="hidden" name="Class" value={{i[2]}}>
+<input type="hidden" name="weight" value={{i[1]}}>
+<input type="hidden" name="price" value={{i[3]}}>
+<input type="hidden" name="total" value={{i[4]}}>
+<input type="hidden" name="num" value={{i[5]}}>
+<input type="hidden" name="table" value='buy'>
+<input type='submit' value='修改'>
+</form>
+{% endfor %}
+</table>
+<br>
+{%endif%}
+
+
+{%if sell%}
+<td valign="top">
+<h1>賣出</h1>
+<table border = 1>
+<tr><td>時間<td>水果<td>斤數<td>價格<td>總價<td>買家
+{% for i in sell %}
+<tr><td>{{i[0]}}<td>{{i[2]}}<td>{{i[1]}}<td>{{i[3]}}<td>{{i[1]*i[3]}}<td>{{i[5]}}
+<td><form method='post' action='update'>
+<input type="hidden" name="time" value={{i[0]}}>
+<input type="hidden" name="Class" value={{i[2]}}>
+<input type="hidden" name="weight" value={{i[1]}}>
+<input type="hidden" name="price" value={{i[3]}}>
+<input type="hidden" name="total" value={{i[4]}}>
+<input type="hidden" name="company" value={{i[5]}}>
+<input type="hidden" name="num" value={{i[6]}}>
+<input type="hidden" name="table" value='sell'>
+<input type='submit' value='修改'>
+</form>
+
+{% endfor %}
+</table>
+<br>
+{%endif%}
+
+
+{%if large%}
+<td valign="top"><h1>大筆支出</h1>
+<table border = 1>
+<tr><td>時間<td>項目<td>價格
+{%for i in large%}
+<tr><td>{{i[0]}}<td>{{i[2]}}<td>{{i[1]}}
+<td><form method='post' action='update'>
+<input type="hidden" name="time" value={{i[0]}}>
+<input type="hidden" name="item" value={{i[2]}}>
+<input type="hidden" name="price" value={{i[1]}}>
+<input type="hidden" name="num" value={{i[3]}}>
+<input type="hidden" name="table" value='large'>
+<input type='submit' value='修改'>
+</form>
+
+{%endfor%}
+</table>
+<br>
+{%endif%}
+
+{%if normal%}
+<td valign="top"><h1>日常支出</h1>
+<table border = 1>
+<tr><td>時間<td>項目<td>價格
+{%for i in normal%}
+<tr><td>{{i[0]}}<td>{{i[2]}}<td>{{i[1]}}
+<td><form method='post' action='update'>
+<input type="hidden" name="time" value={{i[0]}}>
+<input type="hidden" name="item" value={{i[2]}}>
+<input type="hidden" name="price" value={{i[1]}}>
+<input type="hidden" name="num" value={{i[3]}}>
+<input type="hidden" name="table" value='normal'>
+<input type='submit' value='修改'>
+</form>
+
+{%endfor%}
+</table>
+<br>
+{%endif%}
+
+
+</table>

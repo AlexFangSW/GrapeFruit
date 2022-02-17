@@ -1,0 +1,36 @@
+<table>
+<tr><td><table>
+<form method="POST" action="normalact">
+
+<tr><td>日期 <td><input type="date" name="time" id="time" value={{time}}><br>
+
+<tr><td>價格<td><input type="text" name="price" value=0>
+
+<tr><td>項目<td><input type="radio" name="item" value="農藥">農藥
+<tr><td><td><input type="radio" name="item" value="肥料">肥料
+<tr><td><td><input type="radio" name="item" value="剪枝工錢">剪枝工錢
+<tr><td><td><input type="radio" name="item" value="噴藥工錢">噴藥工錢
+<tr><td><td><input type="radio" name="item" value="其他">其他
+
+
+<tr><td><td><input type="submit">
+<br><a href = 'account'>回上一頁</a>
+
+</form>
+</table>
+<td valign="top"><form method="POST" action="update" name="inside">
+        {% if manu %}
+        {{time}} {{price}} {{item}} {{num}}
+        <input type="hidden" name="time" value={{time}}>
+        <input type="hidden" name="price" value={{price}}>
+        <input type="hidden" name="item" value={{item}}>
+        <input type="hidden" name="num" value={{num}}>
+        <input type="hidden" name="table" value="normal">
+        <input type="submit" value="修改">
+        {% endif %}
+
+{%if msg%}
+{{msg}}
+<br>
+{%endif%}
+<br>

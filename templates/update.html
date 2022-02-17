@@ -1,0 +1,30 @@
+<form method="POST" action="updateact">
+<table>
+<input type="hidden" name="table" value={{table}}>
+<tr><td>日期: <td><input type="date" name="time" id="time" value={{time}}><br>
+{% if table == "large" %}
+   <tr><td>價格: <td><input type="text" name="price" value={{price}}>
+   <tr><td>項目: <td><input type="text" name="item" value={{item}}>
+   <tr><td><input type="hidden" name="num" value={{num}}>
+{% endif %}
+{% if table == "normal" %}
+   <tr><td>價格: <td><input type="text" name="price" value={{price}}>
+   <tr><td>項目: <td><input type="text" name="item" value={{item}}>
+   <tr><td><input type="hidden" name="num" value={{num}}>
+{% endif %}
+{% if table == "sell" %}
+   <tr><td>重量: <td><input type="text" name="weight" value={{weight}}>
+   <tr><td>項目: <td><input type="text" name="Class" value={{Class}}>
+   <tr><td>價格: <td><input type="text" name="price" value={{price}}>
+   <tr><td>公司: <td><input type="text" name="company" value={{company}}>
+   <tr><td><input type="hidden" name="num" value={{num}}>
+{% endif %}
+{% if table == "buy" %}
+   <tr><td>重量: <td><input type="text" name="weight" value={{weight}}>
+   <tr><td>項目: <td><input type="text" name="Class" value={{Class}}>
+   <tr><td>價格: <td><input type="text" name="price" value={{price}}>
+   <tr><td><input type="hidden" name="num" value={{num}}>
+{% endif %}
+<tr><td><input type="submit">
+</table>
+</form>

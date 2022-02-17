@@ -1,0 +1,36 @@
+<table valign="top">
+<tr><td><form method="POST" action="largeact" name="outside">
+<table>
+    <tr><td>日期
+    <td><input type="date" name="time" id="time" value={{time}}><br>
+    <tr><td>價格<td><input type="text" name="price" value=0>
+
+    <tr><td>項目<td><input type="radio" name="item" value="農具">農具
+    <tr><td><td><input type="radio" name="item" value="膠帶">膠帶
+    <tr><td><td><input type="radio" name="item" value="農地租賃">農地租賃
+    <tr><td><td><input type="radio" name="item" value="印刷品">印刷品
+    <tr><td><td><input type="radio" name="item" value="紙箱">紙箱
+    <tr><td><td><input type="radio" name="item" value="農用防蟲袋">農用防蟲袋
+    <tr><td><td><input type="radio" name="item" value="其他">其他
+
+    <tr><td><td><input type="submit">
+</table>
+</form>
+<td valign="top"><form method="POST" action="update" name="inside">
+        {% if manu %}
+        {{time}} {{price}} {{item}} {{num}}
+        <input type="hidden" name="time" value={{time}}>
+        <input type="hidden" name="price" value={{price}}>
+        <input type="hidden" name="item" value={{item}}>
+        <input type="hidden" name="num" value={{num}}>
+        <input type="hidden" name="table" value="large">
+        <input type="submit" value="修改">
+        {% endif %}
+</form>
+</table>
+
+{%if msg%}
+{{msg}}
+<br>
+{%endif%}
+<a href = 'account'>回上一頁</a>
